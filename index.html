@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>yt-dlp Web Interface</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+ </head>
+    <style>
+        :root {
+    --primary-color: #ff0000;
+    --primary-dark: #cc0000;
+    --primary-light: #ff3333;
+    --secondary-color: #282828;
+    --background-color: #f5f5f5;
+    --card-bg: #ffffff;
+    --text-color: #333333;
+    --text-light: #666666;
+    --light-gray: #e0e0e0;
+    --lighter-gray: #f0f0f0;
+    --dark-gray: #444444;
+    --success-color: #4caf50;
+    --error-color: #f44336;
+    --warning-color: #ff9800;
+    --info-color: #2196f3;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px 0;
+}
+
+header h1 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-size: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+header h1 i {
+    font-size: 2.2rem;
+}
+
+header p {
+    color: var(--text-light);
+    font-size: 1.1rem;
+}
+
+.card {
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 25px;
+}
+
+.download-form h3, .download-queue h3 {
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.input-group {
+    display: flex;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.input-group input {
+    flex: 1;
+    padding: 12px 15px;
+    border: 1px solid var(--light-gray);
+    border-right: none;
+    font-size: 16px;
+    outline: none;
+}
+
+.input-group input:focus {
+    border-color: var(--primary-color);
+}
+
+.input-group button {
+    padding: 0 20px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#video-info {
+    display: flex;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: var(--lighter-gray);
+    border-radius: 8px;
+    gap: 20px;
+}
+
+.video-thumbnail {
+    flex-shrink: 0;
+}
+
+.video-thumbnail img {
+    width: 200px;
+    height: auto;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.video-details {
+    flex-grow: 1;
+}
+
+.video-details h3 {
+    margin-bottom: 12px;
+    font-size: 1.3rem;
+    color: var(--secondary-color);
+}
+
+.meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 10px;
+    color: var(--text-light);
+}
+
+.meta span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.meta i {
+    width: 16px;
+    text-align: center;
+}
+
+.format-selection {
+    margin: 20px 0;
+}
+
+.format-options {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.format-category {
+    flex: 1;
+    min-width: 250px;
+}
+
+.format-category h4 {
+    margin-bottom: 10px;
+    color: var(--dark-gray);
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.format-selection label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.format-selection label:hover {
+    background-color: var(--lighter-gray);
+}
+
+.format-selection input[type="radio"] {
+    margin-right: 10px;
+}
+
+.format-label {
+    flex: 1;
+}
+
+.advanced-options {
+    margin: 25px 0;
+    padding: 20px;
+    background-color: var(--lighter-gray);
+    border-radius: 8px;
+}
+
+.advanced-options h4 {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--light-gray);
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.form-group input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.form-group small {
+    color: var(--text-light);
+    font-size: 0.85rem;
+    display: block;
+    margin-top: 5px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+button.primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+button.primary:hover {
+    background-color: var(--primary-dark);
+}
+
+button.secondary {
+    background-color: var(--light-gray);
+    color: var(--text-color);
+}
+
+button.secondary:hover {
+    background-color: #d0d0d0;
+}
+
+button.small {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.queue-container {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+    border: 1px solid var(--light-gray);
+    border-radius: 6px;
+}
+
+#queue-list {
+    list-style: none;
+}
+
+#queue-list li {
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--light-gray);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#queue-list li:last-child {
+    border-bottom: none;
+}
+
+.queue-item-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.queue-item-title {
+    font-weight: 500;
+}
+
+.queue-item-url {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    word-break: break-all;
+}
+
+.queue-item-status {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-left: 15px;
+}
+
+.status-queued {
+    background-color: var(--light-gray);
+    color: var(--text-light);
+}
+
+.status-downloading {
+    background-color: var(--info-color);
+    color: white;
+}
+
+.status-completed {
+    background-color: var(--success-color);
+    color: white;
+}
+
+.status-failed {
+    background-color: var(--error-color);
+    color: white;
+}
+
+.queue-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.progress-container {
+    width: 100%;
+    height: 6px;
+    background-color: var(--light-gray);
+    border-radius: 3px;
+    margin-top: 8px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: var(--primary-color);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+#status-message {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    max-width: 400px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+#status-message.visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+#status-message i {
+    font-size: 1.2rem;
+}
+
+.status-success {
+    background-color: var(--success-color);
+    color: white;
+}
+
+.status-error {
+    background-color: var(--error-color);
+    color: white;
+}
+
+.status-info {
+    background-color: var(--info-color);
+    color: white;
+}
+
+.status-warning {
+    background-color: var(--warning-color);
+    color: white;
+}
+
+.hidden {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .video-info {
+        flex-direction: column;
+    }
+    
+    .video-thumbnail img {
+        width: 100%;
+        height: auto;
+    }
+    
+    .format-options {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    button {
+        justify-content: center;
+    }
+}
+    </style>
+
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fab fa-youtube"></i> yt-dlp Web Interface</h1>
+            <p>Download videos and audio from YouTube and other supported sites</p>
+        </header>
+
+        <main>
+            <div class="download-form card">
+                <div class="input-group">
+                    <input type="text" id="url-input" placeholder="https://www.youtube.com/watch?v=..." autofocus>
+                    <button id="fetch-info" class="primary">
+                        <i class="fas fa-search"></i> Fetch Info
+                    </button>
+                </div>
+
+                <div id="video-info" class="hidden">
+                    <div class="video-thumbnail">
+                        <img id="thumbnail" src="" alt="Video thumbnail">
+                    </div>
+                    <div class="video-details">
+                        <h3 id="video-title"></h3>
+                        <div class="meta">
+                            <span id="video-duration"><i class="far fa-clock"></i> </span>
+                            <span id="video-uploader"><i class="far fa-user"></i> </span>
+                            <span id="video-views"><i class="far fa-eye"></i> </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="download-options">
+                    <h3><i class="fas fa-download"></i> Download Options</h3>
+                    
+                    <div class="format-selection">
+                        <div class="format-options">
+                            <div class="format-category">
+                                <h4>Video Formats</h4>
+                                <label>
+                                    <input type="radio" name="format" value="best" checked> 
+                                    <span class="format-label">Best Quality (1080p or higher)</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="format" value="mp4-1080"> 
+                                    <span class="format-label">MP4 1080p</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="format" value="mp4-720"> 
+                                    <span class="format-label">MP4 720p</span>
+                                </label>
+                            </div>
+                            
+                            <div class="format-category">
+                                <h4>Audio Formats</h4>
+                                <label>
+                                    <input type="radio" name="format" value="mp3"> 
+                                    <span class="format-label">MP3 (High Quality)</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="format" value="opus"> 
+                                    <span class="format-label">Opus (Smaller Size)</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="advanced-options hidden" id="advanced-options">
+                        <h4><i class="fas fa-cog"></i> Advanced Options</h4>
+                        <div class="form-group">
+                            <label for="custom-format">Custom Format:</label>
+                            <input type="text" id="custom-format" placeholder="bestvideo[height<=1080]+bestaudio/best">
+                            <small>See yt-dlp documentation for format options</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="output-path">Output Template:</label>
+                            <input type="text" id="output-path" placeholder="%(title)s.%(ext)s">
+                            <small>Variables: %(title)s, %(ext)s, %(uploader)s, etc.</small>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button id="toggle-advanced" class="secondary">
+                            <i class="fas fa-cog"></i> <span class="btn-text">Advanced Options</span>
+                        </button>
+                        <button id="download-btn" class="primary" disabled>
+                            <i class="fas fa-cloud-download-alt"></i> Download
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="download-queue card">
+                <h3><i class="fas fa-tasks"></i> Download Queue <span id="queue-count">(0)</span></h3>
+                <div class="queue-container">
+                    <ul id="queue-list"></ul>
+                </div>
+                <div class="queue-actions">
+                    <button id="clear-completed" class="secondary small">
+                        <i class="fas fa-trash"></i> Clear Completed
+                    </button>
+                    <button id="retry-failed" class="secondary small">
+                        <i class="fas fa-redo"></i> Retry Failed
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <div id="status-message" class="hidden"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    // DOM Elements
+    const urlInput = document.getElementById('url-input');
+    const fetchInfoBtn = document.getElementById('fetch-info');
+    const downloadBtn = document.getElementById('download-btn');
+    const toggleAdvancedBtn = document.getElementById('toggle-advanced');
+    const advancedOptions = document.getElementById('advanced-options');
+    const videoInfo = document.getElementById('video-info');
+    const statusMessage = document.getElementById('status-message');
+    const queueList = document.getElementById('queue-list');
+    const queueCount = document.getElementById('queue-count');
+    const clearCompletedBtn = document.getElementById('clear-completed');
+    const retryFailedBtn = document.getElementById('retry-failed');
+    
+    // State
+    let currentVideoInfo = null;
+    let downloadQueue = JSON.parse(localStorage.getItem('downloadQueue')) || [];
+    
+    // Initialize
+    updateQueueDisplay();
+    
+    // Event Listeners
+    urlInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            fetchInfoBtn.click();
+        }
+    });
+    
+    fetchInfoBtn.addEventListener('click', fetchVideoInfo);
+    downloadBtn.addEventListener('click', addToDownloadQueue);
+    toggleAdvancedBtn.addEventListener('click', toggleAdvancedOptions);
+    clearCompletedBtn.addEventListener('click', clearCompletedDownloads);
+    retryFailedBtn.addEventListener('click', retryFailedDownloads);
+    
+    // Functions
+    async function fetchVideoInfo() {
+        const url = urlInput.value.trim();
+        
+        if (!url) {
+            showStatus('Please enter a video URL', 'error');
+            urlInput.focus();
+            return;
+        }
+        
+        try {
+            showStatus('Fetching video information...', 'info');
+            fetchInfoBtn.disabled = true;
+            fetchInfoBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Fetching...';
+            
+            // Simulate API call delay
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            
+            // In a real implementation, this would call your backend:
+            // const response = await fetch('/api/getInfo', {
+            //     method: 'POST',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify({ url })
+            // });
+            // currentVideoInfo = await response.json();
+            
+            // Mock response for demo
+            currentVideoInfo = {
+                title: "Example Video: " + Math.random().toString(36).substring(7),
+                duration: "12:34",
+                uploader: "Demo Channel",
+                views: "1,234,567 views",
+                thumbnail: "https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
+                url: url
+            };
+            
+            // Display video info
+            document.getElementById('video-title').textContent = currentVideoInfo.title;
+            document.getElementById('video-duration').textContent += currentVideoInfo.duration;
+            document.getElementById('video-uploader').textContent += currentVideoInfo.uploader;
+            document.getElementById('video-views').textContent += currentVideoInfo.views;
+            document.getElementById('thumbnail').src = currentVideoInfo.thumbnail;
+            document.getElementById('thumbnail').onerror = function() {
+                this.src = 'https://via.placeholder.com/320x180?text=No+Thumbnail';
+            };
+            
+            videoInfo.classList.remove('hidden');
+            downloadBtn.disabled = false;
+            
+            showStatus('Video information loaded successfully', 'success');
+        } catch (error) {
+            console.error('Error fetching video info:', error);
+            showStatus('Failed to fetch video information', 'error');
+        } finally {
+            fetchInfoBtn.disabled = false;
+            fetchInfoBtn.innerHTML = '<i class="fas fa-search"></i> Fetch Info';
+        }
+    }
+    
+    function addToDownloadQueue() {
+        if (!currentVideoInfo) return;
+        
+        const format = document.querySelector('input[name="format"]:checked').value;
+        const customFormat = document.getElementById('custom-format').value;
+        const outputTemplate = document.getElementById('output-path').value || '%(title)s.%(ext)s';
+        
+        const downloadItem = {
+            id: Date.now(),
+            url: currentVideoInfo.url,
+            title: currentVideoInfo.title,
+            format: customFormat || format,
+            outputTemplate: outputTemplate,
+            status: 'queued',
+            progress: 0,
+            addedAt: new Date().toISOString()
+        };
+        
+        downloadQueue.push(downloadItem);
+        saveQueueToLocalStorage();
+        updateQueueDisplay();
+        processQueue();
+        
+        showStatus('Added to download queue: ' + currentVideoInfo.title, 'success');
+    }
+    
+    async function processQueue() {
+        const item = downloadQueue.find(item => item.status === 'queued');
+        if (!item) return;
+        
+        // Update item status
+        item.status = 'downloading';
+        item.startedAt = new Date().toISOString();
+        saveQueueToLocalStorage();
+        updateQueueDisplay();
+        
+        try {
+            // Simulate download progress
+            for (let progress = 5; progress <= 100; progress += 5) {
+                await new Promise(resolve => setTimeout(resolve, 200));
+                item.progress = progress;
+                updateQueueDisplay();
+            }
+            
+            // In a real implementation, this would call your backend:
+            // const response = await fetch('/api/download', {
+            //     method: 'POST',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify(item)
+            // });
+            
+            // Simulate download completion delay
+            await new Promise(resolve => setTimeout(resolve, 500));
+            
+            item.status = 'completed';
+            item.completedAt = new Date().toISOString();
+            showStatus('Download completed: ' + item.title, 'success');
+        } catch (error) {
+            console.error('Download failed:', error);
+            item.status = 'failed';
+            item.error = error.message || 'Unknown error';
+            showStatus('Download failed: ' + item.title, 'error');
+        } finally {
+            saveQueueToLocalStorage();
+            updateQueueDisplay();
+            processQueue(); // Process next item
+        }
+    }
+    
+    function updateQueueDisplay() {
+        queueList.innerHTML = '';
+        
+        if (downloadQueue.length === 0) {
+            queueList.innerHTML = '<li class="empty-queue">Your download queue is empty</li>';
+            queueCount.textContent = '(0)';
+            return;
+        }
+        
+        const queuedCount = downloadQueue.filter(item => item.status === 'queued').length;
+        const downloadingCount = downloadQueue.filter(item => item.status === 'downloading').length;
+        const completedCount = downloadQueue.filter(item => item.status === 'completed').length;
+        const failedCount = downloadQueue.filter(item => item.status === 'failed').length;
+        
+        queueCount.textContent = `(${downloadQueue.length} total, ${queuedCount} queued, ${downloadingCount} downloading, ${completedCount} completed, ${failedCount} failed)`;
+        
+        downloadQueue.forEach(item => {
+            const li = document.createElement('li');
+            li.className = 'queue-item';
+            
+            const infoDiv = document.createElement('div');
+            infoDiv.className = 'queue-item-info';
+            
+            const titleDiv = document.createElement('div');
+            titleDiv.className = 'queue-item-title';
+            titleDiv.textContent = item.title;
+            
+            const urlDiv = document.createElement('div');
+            urlDiv.className = 'queue-item-url';
+            urlDiv.textContent = item.url;
+            
+            const progressDiv = document.createElement('div');
+            progressDiv.className = 'progress-container';
+            
+            const progressBar = document.createElement('div');
+            progressBar.className = 'progress-bar';
+            progressBar.style.width = `${item.progress}%`;
+            
+            progressDiv.appendChild(progressBar);
+            
+            infoDiv.appendChild(titleDiv);
+            infoDiv.appendChild(urlDiv);
+            
+            if (item.status === 'downloading') {
+                infoDiv.appendChild(progressDiv);
+            }
+            
+            const statusDiv = document.createElement('div');
+            statusDiv.className = `queue-item-status status-${item.status}`;
+            statusDiv.textContent = item.status;
+            
+            li.appendChild(infoDiv);
+            li.appendChild(statusDiv);
+            
+            queueList.appendChild(li);
+        });
+    }
+    
+    function clearCompletedDownloads() {
+        downloadQueue = downloadQueue.filter(item => item.status !== 'completed');
+        saveQueueToLocalStorage();
+        updateQueueDisplay();
+        showStatus('Cleared completed downloads', 'info');
+    }
+    
+    function retryFailedDownloads() {
+        const failedItems = downloadQueue.filter(item => item.status === 'failed');
+        
+        if (failedItems.length === 0) {
+            showStatus('No failed downloads to retry', 'info');
+            return;
+        }
+        
+        failedItems.forEach(item => {
+            item.status = 'queued';
+            item.progress = 0;
+            delete item.error;
+        });
+        
+        saveQueueToLocalStorage();
+        updateQueueDisplay();
+        processQueue();
+        showStatus(`Retrying ${failedItems.length} failed downloads`, 'info');
+    }
+    
+    function toggleAdvancedOptions() {
+        advancedOptions.classList.toggle('hidden');
+        const btnText = toggleAdvancedBtn.querySelector('.btn-text');
+        btnText.textContent = advancedOptions.classList.contains('hidden') 
+            ? 'Advanced Options' 
+            : 'Hide Advanced';
+    }
+    
+    function showStatus(message, type) {
+        statusMessage.textContent = message;
+        statusMessage.className = `visible status-${type}`;
+        statusMessage.innerHTML = `<i class="fas fa-${getStatusIcon(type)}"></i> ${message}`;
+        
+        setTimeout(() => {
+            statusMessage.classList.remove('visible');
+        }, 3000);
+    }
+    
+    function getStatusIcon(type) {
+        const icons = {
+            'success': 'check-circle',
+            'error': 'exclamation-circle',
+            'warning': 'exclamation-triangle',
+            'info': 'info-circle'
+        };
+        return icons[type] || 'info-circle';
+    }
+    
+    function saveQueueToLocalStorage() {
+        localStorage.setItem('downloadQueue', JSON.stringify(downloadQueue));
+    }
+});
+    </script>
+</body>
+</html>

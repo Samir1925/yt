@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "NepalTools - Offline Tools",
+  "version": "2.0",
+  "description": "All-in-one offline tools for Nepal. Store files in browser storage.",
+  "permissions": [
+    "storage",
+    "unlimitedStorage"
+  ],
+  "host_permissions": [
+    "https://cdnjs.cloudflare.com/*",
+    "https://unpkg.com/*"
+  ],
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "NepalTools"
+  },
+  "icons": {
+    "16": "assets/icons/icon16.png",
+    "48": "assets/icons/icon48.png",
+    "128": "assets/icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "js/background.js"
+  },
+  "offline_enabled": true,
+  "storage": {
+    "managed_schema": "storage_schema.json"
+  }
+}

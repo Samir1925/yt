@@ -848,4 +848,84 @@ class NepalToolsApp {
     }
     
     getFileIcon(mimeType) {
-        if (mimeType.includes('pdf')) return 'file
+        if (mimeType.includes('pdf')) return 'file-pdf';
+        if (mimeType.includes('image')) return 'image';
+        if (mimeType.includes('text')) return 'file-alt';
+        return 'file';
+    }
+    
+    getFileType(mimeType) {
+        if (mimeType.includes('pdf')) return 'PDF Document';
+        if (mimeType.includes('jpeg') || mimeType.includes('jpg')) return 'JPEG Image';
+        if (mimeType.includes('png')) return 'PNG Image';
+        if (mimeType.includes('gif')) return 'GIF Image';
+        if (mimeType.includes('text')) return 'Text File';
+        return 'File';
+    }
+    
+    loadScript(url) {
+        return new Promise((resolve, reject) => {
+            const script = document.createElement('script');
+            script.src = url;
+            script.onload = resolve;
+            script.onerror = reject;
+            document.head.appendChild(script);
+        });
+    }
+    
+    checkForUpdates() {
+        // Check for updates periodically
+        setInterval(async () => {
+            const stats = await this.storage.getStats();
+            const hoursSinceUpdate = (Date.now() - stats.lastUpdated) / (1000 * 60 * 60);
+            
+            if (hoursSinceUpdate > 24) {
+                // Auto-cleanup old files if storage is getting full
+                const usage = await this.storage.getStorageUsage();
+                if (usage.percent > 80) {
+                    this.cleanupOldFiles();
+                }
+            }
+        }, 3600000); // Check every hour
+    }
+    
+    async cleanupOldFiles() {
+        const files = await this.storage.getFiles();
+        const fileList = Object.values(files);
+        
+        // Sort by last accessed date (oldest first)
+        fileList.sort((a, b) => a.lastAccessed - b.lastAccessed);
+        
+        // Delete oldest files until usage is below 70%
+        let deletedCount = 0;
+        for (const file of fileList) {
+            const usage = await this.storage.getStorageUsage();
+            if (usage.percent <= 70) break;
+            
+            await this.storage.deleteFile(file.id);
+            deletedCount++;
+        }
+        
+        if (deletedCount > 0) {
+            console.log(`Auto-cleaned ${deletedCount} old files`);
+        }
+    }
+    
+    loadLanguage(lang) {
+        // Language loading implementation
+        // For now, just set a data attribute
+        document.documentElement.lang = lang;
+    }
+}
+
+// Initialize the app when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    // Add hidden class to loading overlay
+    const loadingOverlay = document.getElementById('loading-overlay');
+    if (loadingOverlay) {
+        loadingOverlay.classList.add('hidden');
+    }
+    
+    // Initialize app
+    window.App = new NepalToolsApp();
+});

@@ -1,548 +1,331 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" data-theme="light">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Free online tools for Nepal: PDF tools, image compressor, date converter, GPA calculator, YouTube tools, and more. No installation required.">
-    <meta name="keywords" content="Nepal tools, PDF compressor, image resizer, Nepali date converter, GPA calculator, YouTube thumbnail">
-    <meta name="author" content="NepalTools">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://nepaltools.com/">
-    <meta property="og:title" content="NepalTools - Free Online Tools for Nepal">
-    <meta property="og:description" content="Collection of free online tools: PDF, image, date converter, GPA calculator, YouTube tools and more.">
-    <meta property="og:image" content="https://nepaltools.com/assets/icons/og-image.png">
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://nepaltools.com/">
-    <meta property="twitter:title" content="NepalTools - Free Online Tools for Nepal">
-    <meta property="twitter:description" content="Collection of free online tools: PDF, image, date converter, GPA calculator, YouTube tools and more.">
-    <meta property="twitter:image" content="https://nepaltools.com/assets/icons/og-image.png">
-    
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "NepalTools",
-        "url": "https://nepaltools.com",
-        "description": "Collection of free online tools for Nepal including PDF tools, image compressor, date converter, GPA calculator and YouTube tools.",
-        "applicationCategory": "UtilitiesApplication",
-        "operatingSystem": "Any",
-        "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
-        },
-        "author": {
-            "@type": "Organization",
-            "name": "NepalTools"
-        }
-    }
-    </script>
-    
-    <title>NepalTools - Free Online Tools for Nepal</title>
-    <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
-    <script type="module" src="assets/js/app.js"></script>
-<script type="module" src="assets/js/tools/pdf.js"></script>
+    <title>NepalTools - Offline Tools for Nepal</title>
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
-    <!-- Skip to main content for accessibility -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-    
-    <!-- Header with Navigation -->
-    <header class="header" role="banner">
-        <div class="container">
-            <div class="header-inner">
-                <!-- Logo -->
-                <div class="logo">
-                    <a href="#/" aria-label="NepalTools Home">
-                        <svg width="40" height="40" viewBox="0 0 100 100">
-                            <rect width="100" height="100" rx="20" fill="#DC143C"/>
-                            <path d="M30,30 L70,30 L70,70 L30,70 Z" fill="white"/>
-                            <circle cx="50" cy="50" r="15" fill="#DC143C"/>
-                            <text x="50" y="85" text-anchor="middle" fill="white" font-size="12" font-weight="bold">नेपाल</text>
-                        </svg>
-                        <span class="logo-text">NepalTools</span>
-                    </a>
-                </div>
-                
-                <!-- Mobile menu toggle -->
-                <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </button>
-                
-                <!-- Navigation -->
-                <nav class="nav" role="navigation">
-                    <ul class="nav-list">
-                        <li><a href="#/" class="nav-link active" data-page="home">Home</a></li>
-                        <li class="nav-dropdown">
-                            <button class="nav-link" aria-expanded="false">Tools <i class="fas fa-chevron-down"></i></button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#/pdf-tools" class="dropdown-link" data-page="pdf">PDF Tools</a></li>
-                                <li><a href="#/image-tools" class="dropdown-link" data-page="image">Image Tools</a></li>
-                                <li><a href="#/date-converter" class="dropdown-link" data-page="date">Date Converter</a></li>
-                                <li><a href="#/gpa-calculator" class="dropdown-link" data-page="gpa">GPA Calculator</a></li>
-                                <li><a href="#/youtube-tools" class="dropdown-link" data-page="youtube">YouTube Tools</a></li>
-                                <li><a href="#/offers" class="dropdown-link" data-page="offers">Nepal Offers</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#/about" class="nav-link" data-page="about">About</a></li>
-                        <li><a href="#/contact" class="nav-link" data-page="contact">Contact</a></li>
-                    </ul>
-                </nav>
-                
-                <!-- Language selector and theme toggle -->
-                <div class="header-controls">
-                    <div class="language-selector">
-                        <button class="lang-btn" aria-label="Select language">EN <i class="fas fa-globe"></i></button>
-                        <div class="language-dropdown">
-                            <button class="lang-option" data-lang="en">English</button>
-                            <button class="lang-option" data-lang="ne">नेपाली</button>
-                        </div>
-                    </div>
-                    
-                    <button class="theme-toggle" aria-label="Toggle dark mode">
-                        <i class="fas fa-moon"></i>
-                    </button>
-                    
-                    <!-- Premium toggle (frontend only) -->
-                    <button class="premium-toggle" aria-label="Remove ads">
-                        <i class="fas fa-crown"></i> <span>Remove Ads</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-        
-        <!-- ADSENSE SLOT: Header Ad - place Google AdSense code here -->
-        <div class="ad-placeholder ad-header">
-            <div class="ad-label">Advertisement</div>
-            <div class="ad-slot">Header Ad (728x90)</div>
-            <!-- Paste AdSense code here: -->
-            <!-- 
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
-            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
-            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-            -->
-        </div>
-    </header>
-
-    <!-- Main Content -->
-    <main id="main-content" class="main-content" role="main">
-        <!-- Home/Dashboard -->
-        <section id="home-page" class="page active">
-            <div class="container">
-                <div class="hero">
-                    <h1>Free Online Tools for Nepal</h1>
-                    <p class="subtitle">A collection of essential tools for PDF, images, date conversion, GPA calculation, and more. No installation required.</p>
-                    
-                    <!-- ADSENSE SLOT: Hero Ad - place Google AdSense code here -->
-                    <div class="ad-placeholder ad-hero">
-                        <div class="ad-label">Advertisement</div>
-                        <div class="ad-slot">Hero Ad (728x90)</div>
-                    </div>
-                </div>
-                
-                <div class="tools-grid" id="tools-grid">
-                    <!-- Tool cards will be generated by JavaScript -->
-                </div>
-                
-                <!-- ADSENSE SLOT: Mid-content Ad - place Google AdSense code here -->
-                <div class="ad-placeholder ad-mid-content">
-                    <div class="ad-label">Advertisement</div>
-                    <div class="ad-slot">Mid-content Ad (728x90)</div>
-                </div>
-                
-                <div class="features">
-                    <h2>Why Choose NepalTools?</h2>
-                    <div class="features-grid">
-                        <div class="feature-card">
-                            <i class="fas fa-shield-alt"></i>
-                            <h3>Privacy First</h3>
-                            <p>All processing happens in your browser. We don't upload your files to any server.</p>
-                        </div>
-                        <div class="feature-card">
-                            <i class="fas fa-bolt"></i>
-                            <h3>Fast & Efficient</h3>
-                            <p>Optimized tools that work quickly even on slow internet connections.</p>
-                        </div>
-                        <div class="feature-card">
-                            <i class="fas fa-mobile-alt"></i>
-                            <h3>Mobile Friendly</h3>
-                            <p>Works perfectly on all devices - mobile, tablet, and desktop.</p>
-                        </div>
-                        <div class="feature-card">
-                            <i class="fas fa-language"></i>
-                            <h3>Nepali Support</h3>
-                            <p>Tools designed for Nepal with Bikram Sambat date converter and local features.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- PDF Tools Page -->
-        <section id="pdf-page" class="page">
-            <div class="container">
-                <div class="page-header">
-                    <h1><i class="fas fa-file-pdf"></i> PDF Tools</h1>
-                    <p>Compress, merge, split, rotate, and extract pages from PDF files. All processing happens in your browser.</p>
-                </div>
-                
-                <div class="tool-container">
-                    <div class="tool-actions">
-                        <button class="tool-tab active" data-tab="compress">Compress</button>
-                        <button class="tool-tab" data-tab="merge">Merge</button>
-                        <button class="tool-tab" data-tab="split">Split</button>
-                        <button class="tool-tab" data-tab="rotate">Rotate</button>
-                        <button class="tool-tab" data-tab="extract">Extract Pages</button>
-                    </div>
-                    
-                    <div class="tool-content">
-                        <!-- Compress PDF -->
-                        <div id="compress-tab" class="tab-content active">
-                            <div class="upload-area" id="pdf-upload-area">
-                                <i class="fas fa-cloud-upload-alt"></i>
-                                <h3>Drop PDF files here or click to upload</h3>
-                                <p>Maximum file size: 50MB. Supports multiple files.</p>
-                                <input type="file" id="pdf-file-input" accept=".pdf" multiple>
-                                <label for="pdf-file-input" class="btn btn-primary">Choose Files</label>
-                            </div>
-                            
-                            <div class="tool-controls hidden" id="pdf-controls">
-                                <div class="control-group">
-                                    <label for="compression-level">Compression Level:</label>
-                                    <select id="compression-level">
-                                        <option value="low">Low (Smaller size reduction)</option>
-                                        <option value="medium" selected>Medium (Balanced)</option>
-                                        <option value="high">High (Maximum compression)</option>
-                                    </select>
-                                </div>
-                                
-                                <div class="file-list" id="pdf-file-list"></div>
-                                
-                                <div class="progress-container hidden" id="pdf-progress">
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" id="pdf-progress-fill"></div>
-                                    </div>
-                                    <span class="progress-text" id="pdf-progress-text">0%</span>
-                                </div>
-                                
-                                <div class="action-buttons">
-                                    <button class="btn btn-primary" id="compress-pdf-btn">Compress PDF</button>
-                                    <button class="btn btn-secondary" id="reset-pdf-btn">Reset</button>
-                                </div>
-                                
-                                <div class="result-area hidden" id="pdf-result">
-                                    <h4>Compressed PDF Ready</h4>
-                                    <div class="result-info">
-                                        <p>Original size: <span id="original-size">0 KB</span></p>
-                                        <p>Compressed size: <span id="compressed-size">0 KB</span></p>
-                                        <p>Reduction: <span id="reduction-percent">0%</span></p>
-                                    </div>
-                                    <button class="btn btn-success" id="download-pdf-btn">Download Compressed PDF</button>
-                                </div>
-                                
-                                <!-- Note about server-side alternative -->
-                                <div class="note">
-                                    <p><strong>Note:</strong> For better compression with larger files, consider using server-side processing. See <a href="#server-info">server integration example</a>.</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Other tabs will be loaded dynamically -->
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Image Tools Page -->
-        <section id="image-page" class="page">
-            <div class="container">
-                <div class="page-header">
-                    <h1><i class="fas fa-image"></i> Image Tools</h1>
-                    <p>Resize, compress, and convert images to WebP format. Batch process multiple images.</p>
-                </div>
-                
-                <div class="tool-container">
-                    <!-- Image tools UI will be loaded from image.js -->
-                    <div id="image-tools-container"></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Date Converter Page -->
-        <section id="date-page" class="page">
-            <div class="container">
-                <div class="page-header">
-                    <h1><i class="fas fa-calendar-alt"></i> Nepali Date Converter</h1>
-                    <p>Convert between Bikram Sambat (BS) and Gregorian (AD) calendar systems.</p>
-                </div>
-                
-                <div class="tool-container">
-                    <!-- Date converter UI will be loaded from date-converter.js -->
-                    <div id="date-converter-container"></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- GPA Calculator Page -->
-        <section id="gpa-page" class="page">
-            <div class="container">
-                <div class="page-header">
-                    <h1><i class="fas fa-calculator"></i> GPA / Grade Calculator</h1>
-                    <p>Calculate GPA for NEB, HISSAN, or custom grading systems. Save results as PNG.</p>
-                </div>
-                
-                <div class="tool-container">
-                    <!-- GPA calculator UI will be loaded from gpa-calculator.js -->
-                    <div id="gpa-calculator-container"></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- YouTube Tools Page -->
-        <section id="youtube-page" class="page">
-            <div class="container">
-                <div class="page-header">
-                    <h1><i class="fab fa-youtube"></i> YouTube Tools</h1>
-                    <p>Create thumbnails and generate video scripts for YouTube Shorts.</p>
-                </div>
-                
-                <div class="tool-container">
-                    <div class="tool-actions">
-                        <button class="tool-tab active" data-tab="thumbnail">Thumbnail Maker</button>
-                        <button class="tool-tab" data-tab="caption">Caption Generator</button>
-                    </div>
-                    
-                    <div class="tool-content">
-                        <!-- Thumbnail Maker -->
-                        <div id="thumbnail-tab" class="tab-content active">
-                            <!-- YouTube thumbnail UI will be loaded from youtube-thumbnail.js -->
-                            <div id="thumbnail-maker-container"></div>
-                        </div>
-                        
-                        <!-- Caption Generator -->
-                        <div id="caption-tab" class="tab-content">
-                            <!-- Caption generator UI will be loaded from caption-generator.js -->
-                            <div id="caption-generator-container"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- PDF to Image / Image to PDF Page -->
-        <section id="pdf-image-page" class="page">
-            <div class="container">
-                <div class="page-header">
-                    <h1><i class="fas fa-exchange-alt"></i> PDF ↔ Image Converter</h1>
-                    <p>Convert PDF pages to images and images to PDF documents.</p>
-                </div>
-                
-                <div class="tool-container">
-                    <!-- PDF-Image converter UI will be loaded from pdf-image.js -->
-                    <div id="pdf-image-container"></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Spin Wheel Page -->
-        <section id="spin-page" class="page">
-            <div class="container">
-                <div class="page-header">
-                    <h1><i class="fas fa-redo-alt"></i> Random Spin Wheel</h1>
-                    <p class="warning-text"><i class="fas fa-exclamation-triangle"></i> For entertainment only - no real rewards</p>
-                </div>
-                
-                <div class="tool-container">
-                    <!-- Spin wheel UI will be loaded from spin-wheel.js -->
-                    <div id="spin-wheel-container"></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Nepal Offers Page -->
-        <section id="offers-page" class="page">
-            <div class="container">
-                <div class="page-header">
-                    <h1><i class="fas fa-tag"></i> Nepal Offer Finder</h1>
-                    <p>Find curated deals and discounts from popular platforms in Nepal.</p>
-                </div>
-                
-                <div class="tool-container">
-                    <!-- Offers UI will be loaded from offers.js -->
-                    <div id="offers-container"></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Page -->
-        <section id="about-page" class="page">
-            <div class="container">
-                <div class="page-header">
-                    <h1>About NepalTools</h1>
-                </div>
-                
-                <div class="about-content">
-                    <p>NepalTools is a free collection of online tools designed specifically for users in Nepal. Our mission is to provide easy-to-use, privacy-focused tools that work entirely in your browser without requiring any software installation.</p>
-                    
-                    <h2>Features</h2>
-                    <ul>
-                        <li><strong>Privacy First:</strong> All file processing happens locally in your browser. We don't upload your files to our servers.</li>
-                        <li><strong>Free Forever:</strong> All tools are completely free to use with no hidden costs.</li>
-                        <li><strong>Mobile Optimized:</strong> Works perfectly on smartphones, tablets, and desktop computers.</li>
-                        <li><strong>No Registration:</strong> Use all tools immediately without creating an account.</li>
-                        <li><strong>Regular Updates:</strong> We continuously add new tools and improve existing ones.</li>
-                    </ul>
-                    
-                    <h2>Contact</h2>
-                    <p>For suggestions, feedback, or business inquiries, please email: <strong>contact@nepaltools.com</strong></p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Page -->
-        <section id="contact-page" class="page">
-            <div class="container">
-                <div class="page-header">
-                    <h1>Contact Us</h1>
-                </div>
-                
-                <div class="contact-content">
-                    <div class="contact-form">
-                        <h2>Send us a message</h2>
-                        <form id="contact-form">
-                            <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" id="name" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" id="email" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="message">Message</label>
-                                <textarea id="message" rows="5" required></textarea>
-                            </div>
-                            
-                            <button type="submit" class="btn btn-primary">Send Message</button>
-                        </form>
-                    </div>
-                    
-                    <div class="contact-info">
-                        <h2>Other ways to reach us</h2>
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <h3>Email</h3>
-                                <p>contact@nepaltools.com</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div>
-                                <h3>Location</h3>
-                                <p>Kathmandu, Nepal</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer" role="contentinfo">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>NepalTools</h3>
-                    <p>Free online tools for everyday tasks. Designed and built in Nepal.</p>
-                    <div class="social-links">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Popular Tools</h3>
-                    <ul>
-                        <li><a href="#/pdf-tools">PDF Compressor</a></li>
-                        <li><a href="#/image-tools">Image Resizer</a></li>
-                        <li><a href="#/date-converter">Date Converter</a></li>
-                        <li><a href="#/gpa-calculator">GPA Calculator</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Legal</h3>
-                    <ul>
-                        <li><a href="#/privacy">Privacy Policy</a></li>
-                        <li><a href="#/terms">Terms of Service</a></li>
-                        <li><a href="#/disclaimer">Disclaimer</a></li>
-                    </ul>
-                </div>
+    <!-- App Container -->
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="logo">
+                <i class="fas fa-tools"></i>
+                <h1>NepalTools</h1>
+                <span class="tag">OFFLINE</span>
             </div>
             
-            <div class="footer-bottom">
-                <p>&copy; <span id="current-year">2024</span> NepalTools. All rights reserved.</p>
-                <p>Made with <i class="fas fa-heart" style="color: #DC143C;"></i> in Nepal</p>
+            <!-- Storage Status -->
+            <div class="storage-status" id="storage-status">
+                <div class="storage-info">
+                    <i class="fas fa-database"></i>
+                    <span>Storage: <span id="storage-used">0 MB</span> used</span>
+                </div>
+                <div class="storage-progress">
+                    <div class="storage-bar">
+                        <div class="storage-fill" id="storage-fill"></div>
+                    </div>
+                </div>
+                <button class="btn-clear-storage" id="clear-storage-btn" title="Clear all stored data">
+                    <i class="fas fa-trash"></i>
+                </button>
             </div>
-        </div>
-        
-        <!-- ADSENSE SLOT: Sticky Footer Ad - place Google AdSense code here -->
-        <div class="ad-placeholder ad-sticky-footer">
-            <div class="ad-label">Advertisement</div>
-            <div class="ad-slot">Sticky Footer Ad (728x90)</div>
-            <button class="ad-close" aria-label="Close ad">×</button>
-        </div>
-    </footer>
+        </header>
 
-    <!-- Loading overlay -->
-    <div class="loading-overlay hidden" id="loading-overlay">
-        <div class="loading-spinner"></div>
-        <p>Processing...</p>
+        <!-- Main Navigation -->
+        <nav class="main-nav">
+            <div class="nav-container">
+                <button class="nav-btn active" data-page="dashboard">
+                    <i class="fas fa-home"></i> Dashboard
+                </button>
+                <button class="nav-btn" data-page="pdf">
+                    <i class="fas fa-file-pdf"></i> PDF Tools
+                </button>
+                <button class="nav-btn" data-page="image">
+                    <i class="fas fa-image"></i> Image Tools
+                </button>
+                <button class="nav-btn" data-page="date">
+                    <i class="fas fa-calendar-alt"></i> Date Converter
+                </button>
+                <button class="nav-btn" data-page="gpa">
+                    <i class="fas fa-calculator"></i> GPA Calculator
+                </button>
+                <button class="nav-btn" data-page="youtube">
+                    <i class="fab fa-youtube"></i> YouTube Tools
+                </button>
+                <button class="nav-btn" data-page="storage">
+                    <i class="fas fa-box-archive"></i> My Files
+                </button>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content" id="main-content">
+            <!-- Dashboard -->
+            <section class="page active" id="dashboard-page">
+                <div class="page-header">
+                    <h2>Welcome to NepalTools</h2>
+                    <p>All tools work offline. Files are stored in your browser.</p>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="quick-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-file"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="file-count">0</h3>
+                            <p>Files Stored</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-hdd"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="space-used">0 MB</h3>
+                            <p>Space Used</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="tools-count">8</h3>
+                            <p>Available Tools</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="last-active">Just now</h3>
+                            <p>Last Active</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tool Grid -->
+                <div class="tools-grid" id="tools-grid">
+                    <!-- Tools will be dynamically loaded -->
+                </div>
+
+                <!-- Recent Files -->
+                <div class="recent-files">
+                    <h3>Recent Files</h3>
+                    <div class="files-list" id="recent-files-list">
+                        <p class="empty-message">No files yet. Upload some files to get started.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PDF Tools Page -->
+            <section class="page" id="pdf-page">
+                <div class="page-header">
+                    <h2><i class="fas fa-file-pdf"></i> PDF Tools</h2>
+                    <p>Process PDF files offline. Files are stored in your browser.</p>
+                </div>
+
+                <div class="tool-interface">
+                    <!-- File Upload -->
+                    <div class="upload-section">
+                        <div class="upload-area" id="pdf-upload-area">
+                            <i class="fas fa-cloud-upload-alt fa-3x"></i>
+                            <h3>Upload PDF Files</h3>
+                            <p>Drag & drop or click to upload. Files are saved to browser storage.</p>
+                            <input type="file" id="pdf-file-input" accept=".pdf" multiple hidden>
+                            <button class="btn btn-primary" id="upload-pdf-btn">
+                                <i class="fas fa-folder-open"></i> Select PDFs
+                            </button>
+                            <div class="upload-info">
+                                <p><i class="fas fa-info-circle"></i> Files are stored locally in your browser</p>
+                            </div>
+                        </div>
+
+                        <!-- File List -->
+                        <div class="uploaded-files" id="pdf-file-list">
+                            <h4>PDF Files in Storage</h4>
+                            <div class="files-container" id="pdf-files-container">
+                                <!-- Files will be listed here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PDF Operations -->
+                    <div class="operations-grid">
+                        <div class="operation-card" data-operation="compress">
+                            <div class="operation-icon">
+                                <i class="fas fa-compress"></i>
+                            </div>
+                            <h4>Compress PDF</h4>
+                            <p>Reduce file size</p>
+                            <button class="btn-operation">Select & Process</button>
+                        </div>
+
+                        <div class="operation-card" data-operation="merge">
+                            <div class="operation-icon">
+                                <i class="fas fa-object-group"></i>
+                            </div>
+                            <h4>Merge PDFs</h4>
+                            <p>Combine multiple PDFs</p>
+                            <button class="btn-operation">Select Files</button>
+                        </div>
+
+                        <div class="operation-card" data-operation="split">
+                            <div class="operation-icon">
+                                <i class="fas fa-cut"></i>
+                            </div>
+                            <h4>Split PDF</h4>
+                            <p>Extract specific pages</p>
+                            <button class="btn-operation">Select File</button>
+                        </div>
+
+                        <div class="operation-card" data-operation="rotate">
+                            <div class="operation-icon">
+                                <i class="fas fa-redo"></i>
+                            </div>
+                            <h4>Rotate PDF</h4>
+                            <p>Change page orientation</p>
+                            <button class="btn-operation">Select File</button>
+                        </div>
+                    </div>
+
+                    <!-- Operation Panel -->
+                    <div class="operation-panel" id="pdf-operation-panel" style="display: none;">
+                        <!-- Operation UI loads here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Image Tools Page -->
+            <section class="page" id="image-page">
+                <div class="page-header">
+                    <h2><i class="fas fa-image"></i> Image Tools</h2>
+                    <p>Edit images offline. All processing happens in your browser.</p>
+                </div>
+                <div id="image-tools-container">
+                    <!-- Image tools will load here -->
+                </div>
+            </section>
+
+            <!-- Date Converter Page -->
+            <section class="page" id="date-page">
+                <div class="page-header">
+                    <h2><i class="fas fa-calendar-alt"></i> Date Converter</h2>
+                    <p>Convert between Bikram Sambat and Gregorian calendars</p>
+                </div>
+                <div id="date-converter-container">
+                    <!-- Date converter will load here -->
+                </div>
+            </section>
+
+            <!-- My Files Storage Page -->
+            <section class="page" id="storage-page">
+                <div class="page-header">
+                    <h2><i class="fas fa-box-archive"></i> My Files</h2>
+                    <p>Manage files stored in your browser</p>
+                </div>
+
+                <div class="storage-manager">
+                    <!-- Storage Overview -->
+                    <div class="storage-overview">
+                        <div class="storage-details">
+                            <div class="storage-item">
+                                <i class="fas fa-file-pdf"></i>
+                                <div>
+                                    <h4>PDF Files</h4>
+                                    <p id="pdf-count">0 files</p>
+                                </div>
+                            </div>
+                            <div class="storage-item">
+                                <i class="fas fa-image"></i>
+                                <div>
+                                    <h4>Image Files</h4>
+                                    <p id="image-count">0 files</p>
+                                </div>
+                            </div>
+                            <div class="storage-item">
+                                <i class="fas fa-folder"></i>
+                                <div>
+                                    <h4>Total Files</h4>
+                                    <p id="total-files-count">0 files</p>
+                                </div>
+                            </div>
+                            <div class="storage-item">
+                                <i class="fas fa-hdd"></i>
+                                <div>
+                                    <h4>Storage Used</h4>
+                                    <p id="storage-total-used">0 MB</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- File Browser -->
+                    <div class="file-browser">
+                        <div class="browser-header">
+                            <h3>All Files</h3>
+                            <div class="browser-actions">
+                                <button class="btn btn-secondary" id="sort-by-date">
+                                    <i class="fas fa-sort-amount-down"></i> Sort by Date
+                                </button>
+                                <button class="btn btn-secondary" id="sort-by-size">
+                                    <i class="fas fa-sort-numeric-down"></i> Sort by Size
+                                </button>
+                                <button class="btn btn-danger" id="delete-all-files">
+                                    <i class="fas fa-trash"></i> Delete All
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="files-grid" id="all-files-grid">
+                            <!-- All files will be displayed here -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Other tool pages would follow similar structure -->
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <div class="footer-content">
+                <p>NepalTools v2.0 • All data stored locally in your browser</p>
+                <div class="footer-links">
+                    <button class="footer-link" id="export-data-btn">
+                        <i class="fas fa-download"></i> Export Data
+                    </button>
+                    <button class="footer-link" id="import-data-btn">
+                        <i class="fas fa-upload"></i> Import Data
+                    </button>
+                    <button class="footer-link" id="reset-app-btn">
+                        <i class="fas fa-redo"></i> Reset App
+                    </button>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Toast Notifications -->
+        <div class="toast-container" id="toast-container"></div>
+
+        <!-- Loading Overlay -->
+        <div class="loading-overlay" id="loading-overlay">
+            <div class="loading-spinner"></div>
+            <p>Processing...</p>
+        </div>
     </div>
 
-    <!-- Toast notifications -->
-    <div class="toast-container" id="toast-container"></div>
-
-    <!-- CDN Libraries (loaded as needed) -->
-    <!-- PDF.js for PDF rendering -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
-    <!-- pdf-lib for PDF manipulation -->
-    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
-    <!-- browser-image-compression for image processing -->
-    <script src="https://cdn.jsdelivr.net/npm/browser-image-compression@2.0.2/dist/browser-image-compression.min.js"></script>
-    <!-- JSZip for creating zip files -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-    <!-- FileSaver.js for saving files -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
-    
-    <!-- Main app scripts -->
-    <script src="assets/js/utils.js"></script>
-    <script type="module" src="assets/js/app.js"></script>
-    
-    <!-- Tool modules (loaded dynamically) -->
-    <script type="module" src="assets/js/tools/pdf.js"></script>
-    <script type="module" src="assets/js/tools/image.js"></script>
-    <script type="module" src="assets/js/tools/date-converter.js"></script>
-    <script type="module" src="assets/js/tools/gpa-calculator.js"></script>
-    <script type="module" src="assets/js/tools/youtube-thumbnail.js"></script>
-    <script type="module" src="assets/js/tools/caption-generator.js"></script>
-    <script type="module" src="assets/js/tools/spin-wheel.js"></script>
-    <script type="module" src="assets/js/tools/offers.js"></script>
+    <!-- Scripts -->
+    <script src="js/storage.js"></script>
+    <script src="js/app.js"></script>
+    <!-- Tool modules will be loaded dynamically -->
 </body>
 </html>
